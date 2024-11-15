@@ -27,7 +27,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page">
       <nav className="landing-nav">
-        <div className="logo">Inua Wasichana</div>
+        <div className="logo">Tuinue Wasichana</div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/charity">Charities</Link></li>
