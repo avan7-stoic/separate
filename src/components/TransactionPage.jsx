@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 import '/src/App.css';
 
-/**
- * DonateForHer is a React functional component that allows users to select donation options
- * for transforming a girl's life. Users can choose a donation frequency (One-time, Monthly,
- * or Annually) and select a predefined amount ($10, $25, $50, $100, $250, $500) or enter a 
- * custom amount. The component also provides options to pay via Credit Card or Paypal.
- * 
- * @component
- * @example
- * return (
- *   <DonateForHer />
- * )
- */
-
 const DonateForHer = () => {
     const [frequency, setFrequency] = useState('One-time');
     const [amount, setAmount] = useState(null);

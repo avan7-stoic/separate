@@ -1,13 +1,7 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom'; // Assuming you're using React Router
-// import '/src/App.css';
+import '/src/App.css';
 
 function NoPage() {
-    // const history = useHistory();
-
-    // const handleGoBack = () => {
-    //     history.goBack();
-    // };
 
     return (
         <div id="errors" className="error-containers">

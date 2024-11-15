@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <><h1>Who we are</h1>
+        <><h1>Who we are:</h1>
 
             <div className="about-us">
                 {/* Tabs Section */}
