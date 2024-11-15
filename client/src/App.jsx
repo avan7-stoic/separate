@@ -36,6 +36,7 @@ function App() {
           <Route path="*" element={<NoPage />} />
         </Routes>
       </div>
+
       <Footer />
     </Router>
   );
