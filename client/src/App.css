@@ -557,3 +557,213 @@ h1 {
 .auth-button:hover {
   background-color: #4a148c;
 }
+
+/* Donor page */
+
+/* General Donor Page Styling */
+.donor {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7e6ff; /* Light pink background */
+  color: #3e1a47; /* Dark purple text */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #d85b8c; /* Soft pink */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #f48fb1; /* Light pink button */
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d85b8c; /* Darker pink on hover */
+}
+
+.view-content {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #d85b8c;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  background-color: #ffccf9;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: #f48fb1;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d85b8c;
+}
+
+form input {
+  border: 2px solid #f48fb1;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+form button {
+  background-color: #f48fb1;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #d85b8c;
+}
+
+/* Administrator page */
+
+/* General Donor Page Styling */
+.donor {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7e6ff; /* Light pink background */
+  color: #3e1a47; /* Dark purple text */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #d85b8c; /* Soft pink */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #f48fb1; /* Light pink button */
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d85b8c; /* Darker pink on hover */
+}
+
+.view-content {
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #d85b8c;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  background-color: #ffccf9;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: #f48fb1;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d85b8c;
+}
+
+form input {
+  border: 2px solid #f48fb1;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+
+form button {
+  background-color: #f48fb1;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #d85b8c;
+}
