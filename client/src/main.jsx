@@ -9,13 +9,13 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider
+    {/* <AuthProvider
       authType="localstorage"
       authName="_auth"
       cookieDomain={window.location.hostname}
       cookieSecure={window.location.protocol === "https://inuka.onrender.com/"}
-    >
-      <App />
-    </AuthProvider>
+    > */}
+    <App />
+    {/* </AuthProvider> */}
   </React.StrictMode>
 );
