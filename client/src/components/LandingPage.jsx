@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '/src/App.css'; 
+import '/src/App.css';
 import Footer from './Footer.jsx';
 //import CharityProfilePage from '../pages/CharityProfilePage.jsx';
 
@@ -30,7 +30,7 @@ const LandingPage = () => {
         <div className="logo">Inua Wasichana</div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/charities">Charities</Link></li>
+          <li><Link to="/charity">Charities</Link></li>
           <li><Link to="/impact">Our Impact</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact</Link></li>
@@ -39,12 +39,12 @@ const LandingPage = () => {
           <div className="sign-in-dropdown">
             <button>Sign In</button>
             <div className="dropdown-content">
-              <Link to="/signin/donor">As Donor</Link>
-              <Link to="/signin/admin">As Admin</Link>
-              <Link to="/signin/charity">As Charity</Link>
+              <Link to="/auth">As Donor</Link>
+              <Link to="/auth">As Admin</Link>
+              <Link to="/auth">As Charity</Link>
             </div>
           </div>
-          <button className="register-button"><Link to="/register">Register</Link></button>
+          <button className="register-button"><Link to="/auth">Register</Link></button>
         </div>
       </nav>
 
@@ -79,7 +79,7 @@ const LandingPage = () => {
           </div>
         </div>
         <Footer />
-        
+
       </div>
     </div>
   );
