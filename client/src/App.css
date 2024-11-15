@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url('/src/assets/background.jpg');
 }
 
 /* Navigation Bar */

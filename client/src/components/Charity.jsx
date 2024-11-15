@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCharityProfile, toggleLogin } from './charitySlice';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { setCharityProfile, toggleLogin } from './charitySlice';
 
 const Charity = () => {
   const dispatch = useDispatch();
