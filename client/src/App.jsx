@@ -29,7 +29,7 @@ function App() {
           <Route path="/donate" element={<DonateForHer />} />
           <Route path="/stories" element={<Stories />} />
           <Route path="/donor" element={<Donor />} />
-          <Route path="/charity" element={<Charity />} />
+          <Route path="/charities" element={<Charity />} />
           <Route path="/administrator" element={<Administrator />} />
           <Route path="/beneficiaries" element={<Beneficiaries />} />
           <Route path="/contact" element={<ContactUs />} />
