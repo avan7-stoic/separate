@@ -30,7 +30,7 @@ const LandingPage = () => {
         <div className="logo">Tuinue Wasichana</div>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/charity">Charities</Link></li>
+          <li><Link to="/charities">Charities</Link></li>
           <li><Link to="/impact">Our Impact</Link></li>
           <li><Link to="/about">About Us</Link></li>
           <li><Link to="/contact">Contact</Link></li>

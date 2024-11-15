@@ -1,7 +1,7 @@
 // src/api/api.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:5000/api'; // Update this URL as needed
+const API_BASE_URL = 'http://127.0.0.1:5000';
 
 // Fetch a list of all charities
 export const fetchCharities = () => axios.get(`${API_BASE_URL}/charities`);

@@ -1,10 +1,12 @@
-import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { setCharityProfile, toggleLogin } from './charitySlice';
+import React, { useState } from 'react';
 
 const Charity = () => {
-  const dispatch = useDispatch();
-  const profile = useSelector((state) => state.charity.profile);
+  // Local state to manage the charity profile
+  const [profile, setProfile] = useState({
+    name: '',
+    description: '',
+  });
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -12,8 +14,8 @@ const Charity = () => {
       name: e.target.name.value,
       description: e.target.description.value,
     };
-    dispatch(setCharityProfile(newProfile));
-    dispatch(toggleLogin());
+    setProfile(newProfile); // Update the local profile state
+    setLoggedIn(true); // Simulate a login toggle
   };
 
   return (
@@ -27,6 +29,7 @@ const Charity = () => {
       <h3>Profile</h3>
       <p>Name: {profile.name}</p>
       <p>Description: {profile.description}</p>
+      <p>Status: {loggedIn ? "Logged In" : "Logged Out"}</p>
     </div>
   );
 };

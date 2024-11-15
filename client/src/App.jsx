@@ -6,7 +6,7 @@ import AuthPage from './components/UserAuth';
 import DonateForHer from './components/TransactionPage';
 import Stories from './components/Stories';
 import Donor from './components/Donor';
-import Charity from './components/Charity';
+import Charities from './components/Charity';
 import Administrator from './components/Admin';
 import Beneficiaries from './components/Beneficiary';
 import ContactUs from './components/ContactUs';
@@ -29,7 +29,7 @@ function App() {
           <Route path="/donate" element={<DonateForHer />} />
           <Route path="/stories" element={<Stories />} />
           <Route path="/donor" element={<Donor />} />
-          <Route path="/charities" element={<Charity />} />
+          <Route path="/charities" element={<Charities />} />
           <Route path="/administrator" element={<Administrator />} />
           <Route path="/beneficiaries" element={<Beneficiaries />} />
           <Route path="/contact" element={<ContactUs />} />
