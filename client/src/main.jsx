@@ -15,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       cookieDomain={window.location.hostname}
       cookieSecure={window.location.protocol === "https://inuka.onrender.com/"}
     > */}
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
     {/* </AuthProvider> */}
   </React.StrictMode>
 );
