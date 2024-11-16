@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { addStory } from './storiesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addStory } from '../redux/charitySlice';
 
 const Stories = () => {
-  const stories = useSelector((state) => state.stories);
+  const stories = useSelector((state) => state.charity.stories); // access stories from the Redux state
   const dispatch = useDispatch();
 
   const [newStory, setNewStory] = useState({ title: '', content: '' });
@@ -14,8 +14,8 @@ const Stories = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(addStory({ ...newStory, id: Date.now() }));
-    setNewStory({ title: '', content: '' });
+    dispatch(addStory({ ...newStory, id: Date.now() })); // dispatch the addStory action
+    setNewStory({ title: '', content: '' }); // clear form after adding
   };
 
   return (
@@ -30,8 +30,20 @@ const Stories = () => {
         ))}
       </ul>
       <form onSubmit={handleAdd}>
-        <input name="title" placeholder="Title" onChange={handleChange} required />
-        <textarea name="content" placeholder="Content" onChange={handleChange} required />
+        <input
+          name="title"
+          value={newStory.title}
+          placeholder="Title"
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="content"
+          value={newStory.content}
+          placeholder="Content"
+          onChange={handleChange}
+          required
+        />
         <button type="submit">Add Story</button>
       </form>
     </div>
