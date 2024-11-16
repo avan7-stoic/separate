@@ -47,7 +47,7 @@ const Administrator = () => {
 
 const CharityApplications = () => {
   const dispatch = useDispatch();
-  const applications = useSelector((state) => state.admin.charityApplications);
+  const applications = useSelector((state) => state.admin.charityApplications); // Ensure this selector is correct
   const status = useSelector((state) => state.admin.status);
   const error = useSelector((state) => state.admin.error);
 
@@ -101,7 +101,7 @@ const CharityApplications = () => {
 
 const ManageCharities = () => {
   const dispatch = useDispatch();
-  const charities = useSelector((state) => state.admin.charities);
+  const charities = useSelector((state) => state.admin.charities); // Ensure this selector is correct
   const status = useSelector((state) => state.admin.status);
   const error = useSelector((state) => state.admin.error);
 
@@ -156,7 +156,7 @@ const ManageCharities = () => {
 
 const DonorInsights = () => {
   const dispatch = useDispatch();
-  const donors = useSelector((state) => state.admin.donors);
+  const donors = useSelector((state) => state.admin.donors); // Ensure this selector is correct
   const status = useSelector((state) => state.admin.status);
   const error = useSelector((state) => state.admin.error);
 
@@ -192,7 +192,7 @@ const DonorInsights = () => {
 
 const BeneficiaryStories = () => {
   const dispatch = useDispatch();
-  const stories = useSelector((state) => state.charity.stories);
+  const stories = useSelector((state) => state.charity.stories); // Ensure this selector is correct
   const status = useSelector((state) => state.charity.status);
   const error = useSelector((state) => state.charity.error);
 
@@ -256,40 +256,37 @@ const PlatformSettings = () => {
       <h3>Platform Settings</h3>
       <div className="space-y-6">
         <div className="p-4 border rounded-lg">
-          <h4 className="font-semibold mb-4">Notification Settings</h4>
-          <div className="space-y-2">
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={settings.emailNotifications}
-                onChange={(e) => handleSettingChange('emailNotifications', e.target.checked)}
-              />
-              <span>Email Notifications</span>
-            </label>
-            <label className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                checked={settings.automaticReports}
-                onChange={(e) => handleSettingChange('automaticReports', e.target.checked)}
-              />
-              <span>Automatic Reports</span>
-            </label>
-          </div>
+          <h4 className="font-semibold mb-2">Email Notifications</h4>
+          <label>
+            <input
+              type="checkbox"
+              checked={settings.emailNotifications}
+              onChange={(e) => handleSettingChange('emailNotifications', e.target.checked)}
+              className="mr-2"
+            />
+            Enable email notifications
+          </label>
         </div>
-        
         <div className="p-4 border rounded-lg">
-          <h4 className="font-semibold mb-4">Donation Settings</h4>
-          <div>
-            <label className="block">
-              <span>Donation Threshold Alert ($)</span>
-              <input
-                type="number"
-                value={settings.donationThreshold}
-                onChange={(e) => handleSettingChange('donationThreshold', parseInt(e.target.value))}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-              />
-            </label>
-          </div>
+          <h4 className="font-semibold mb-2">Automatic Reports</h4>
+          <label>
+            <input
+              type="checkbox"
+              checked={settings.automaticReports}
+              onChange={(e) => handleSettingChange('automaticReports', e.target.checked)}
+              className="mr-2"
+            />
+            Enable automatic reports
+          </label>
+        </div>
+        <div className="p-4 border rounded-lg">
+          <h4 className="font-semibold mb-2">Donation Threshold</h4>
+          <input
+            type="number"
+            value={settings.donationThreshold}
+            onChange={(e) => handleSettingChange('donationThreshold', e.target.value)}
+            className="border px-4 py-2 rounded"
+          />
         </div>
       </div>
     </div>

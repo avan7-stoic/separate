@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { addBeneficiary } from './beneficiariesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBeneficiary } from 'redux/slices/charitySlice';
 
 const Beneficiaries = () => {
-  const beneficiaries = useSelector((state) => state.beneficiaries);
+  const beneficiaries = useSelector((state) => state.charity.beneficiaries);
   const dispatch = useDispatch();
 
   const [newBeneficiary, setNewBeneficiary] = useState({

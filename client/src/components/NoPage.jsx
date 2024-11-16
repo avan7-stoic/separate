@@ -7,7 +7,6 @@ function NoPage() {
         <div id="errors" className="error-containers">
             <h1 className="error-title">Error: 404</h1>
             <div id="notFound" className="not-found-icon">
-                {/* You could add an SVG or image here to represent the error */}
                 <img src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif" alt="Not Found" />
             </div>
             <h2 className="not-found-title">Oops! That page couldn’t be found.</h2>
