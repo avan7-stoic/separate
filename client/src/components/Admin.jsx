@@ -1,6 +1,12 @@
-// Admin.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchCharityApplications,
+  handleApplicationStatus,
+  deleteCharity,
+  fetchDonorInsights,
+} from '../redux/slices/adminSlice';
+import { fetchBeneficiaryStories } from '../redux/slices/charitySlice';
 
 const Administrator = () => {
   const [view, setView] = useState('charityApplications');
@@ -39,40 +45,53 @@ const Administrator = () => {
   );
 };
 
-// CharityApplications component - Displays charity applications with approve/reject options
 const CharityApplications = () => {
-  const [applications, setApplications] = useState([]);
+  const dispatch = useDispatch();
+  const applications = useSelector((state) => state.admin.charityApplications);
+  const status = useSelector((state) => state.admin.status);
+  const error = useSelector((state) => state.admin.error);
 
   useEffect(() => {
-    const fetchApplications = async () => {
-      try {
-        const response = await axios.get('/api/admin/charity-applications');
-        setApplications(response.data);
-      } catch (error) {
-        console.error('Error fetching charity applications:', error);
-      }
-    };
-    fetchApplications();
-  }, []);
+    dispatch(fetchCharityApplications());
+  }, [dispatch]);
 
   const handleApproval = async (id, status) => {
     try {
-      await axios.patch(`/api/admin/charity-applications/${id}`, { status });
-      setApplications(applications.filter(app => app.id !== id));
+      await dispatch(handleApplicationStatus({ id, status })).unwrap();
     } catch (error) {
       console.error(`Error ${status === 'approved' ? 'approving' : 'rejecting'} application:`, error);
     }
   };
 
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
+
   return (
     <div>
       <h3>Charity Applications</h3>
-      <ul>
+      <ul className="space-y-4">
         {applications.map(app => (
-          <li key={app.id}>
-            {app.name}
-            <button onClick={() => handleApproval(app.id, 'approved')}>Approve</button>
-            <button onClick={() => handleApproval(app.id, 'rejected')}>Reject</button>
+          <li key={app.id} className="p-4 border rounded-lg shadow-sm">
+            <div className="flex justify-between items-center">
+              <div>
+                <h4 className="font-semibold">{app.name}</h4>
+                <p className="text-gray-600">{app.description}</p>
+              </div>
+              <div className="space-x-2">
+                <button 
+                  onClick={() => handleApproval(app.id, 'approved')}
+                  className="bg-green-500 text-white px-4 py-2 rounded"
+                >
+                  Approve
+                </button>
+                <button 
+                  onClick={() => handleApproval(app.id, 'rejected')}
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
@@ -80,15 +99,18 @@ const CharityApplications = () => {
   );
 };
 
-// ManageCharities component - Allows viewing and managing charities
 const ManageCharities = () => {
-  const [charities, setCharities] = useState([]);
+  const dispatch = useDispatch();
+  const charities = useSelector((state) => state.admin.charities);
+  const status = useSelector((state) => state.admin.status);
+  const error = useSelector((state) => state.admin.error);
 
   useEffect(() => {
     const fetchCharities = async () => {
       try {
-        const response = await axios.get('/api/admin/charities');
-        setCharities(response.data);
+        const response = await fetch('/api/admin/charities');
+        const data = await response.json();
+        // You might want to add an action to store these charities in Redux state
       } catch (error) {
         console.error('Error fetching charities:', error);
       }
@@ -98,92 +120,180 @@ const ManageCharities = () => {
 
   const handleDeleteCharity = async (id) => {
     try {
-      await axios.delete(`/api/admin/charities/${id}`);
-      setCharities(charities.filter(charity => charity.id !== id));
+      await dispatch(deleteCharity(id)).unwrap();
     } catch (error) {
       console.error('Error deleting charity:', error);
     }
   };
 
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
+
   return (
     <div>
       <h3>Manage Charities</h3>
-      <ul>
+      <div className="grid gap-4">
         {charities.map(charity => (
-          <li key={charity.id}>
-            {charity.name}
-            <button onClick={() => handleDeleteCharity(charity.id)}>Delete</button>
-          </li>
+          <div key={charity.id} className="p-4 border rounded-lg shadow-sm">
+            <div className="flex justify-between items-center">
+              <div>
+                <h4 className="font-semibold">{charity.name}</h4>
+                <p className="text-gray-600">{charity.description}</p>
+              </div>
+              <button 
+                onClick={() => handleDeleteCharity(charity.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-// DonorInsights component - Provides non-anonymous donor data and donation summaries
 const DonorInsights = () => {
-  const [donors, setDonors] = useState([]);
+  const dispatch = useDispatch();
+  const donors = useSelector((state) => state.admin.donors);
+  const status = useSelector((state) => state.admin.status);
+  const error = useSelector((state) => state.admin.error);
 
   useEffect(() => {
-    const fetchDonors = async () => {
-      try {
-        const response = await axios.get('/api/admin/donors');
-        setDonors(response.data);
-      } catch (error) {
-        console.error('Error fetching donor insights:', error);
-      }
-    };
-    fetchDonors();
-  }, []);
+    dispatch(fetchDonorInsights());
+  }, [dispatch]);
+
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
 
   return (
     <div>
       <h3>Donor Insights</h3>
-      <ul>
+      <div className="grid gap-4">
         {donors.map(donor => (
-          <li key={donor.id}>
-            {donor.name} - ${donor.totalDonated}
-          </li>
+          <div key={donor.id} className="p-4 border rounded-lg shadow-sm">
+            <div className="flex justify-between items-center">
+              <div>
+                <h4 className="font-semibold">{donor.name}</h4>
+                <p className="text-gray-600">Total Donated: ${donor.totalDonated}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">Last Donation: {new Date(donor.lastDonationDate).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-500">Frequency: {donor.donationFrequency}</p>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-// BeneficiaryStories component - View stories and inventory list from charities
 const BeneficiaryStories = () => {
-  const [stories, setStories] = useState([]);
+  const dispatch = useDispatch();
+  const stories = useSelector((state) => state.charity.stories);
+  const status = useSelector((state) => state.charity.status);
+  const error = useSelector((state) => state.charity.error);
 
   useEffect(() => {
-    const fetchStories = async () => {
-      try {
-        const response = await axios.get('/api/admin/beneficiary-stories');
-        setStories(response.data);
-      } catch (error) {
-        console.error('Error fetching beneficiary stories:', error);
-      }
-    };
-    fetchStories();
-  }, []);
+    dispatch(fetchBeneficiaryStories());
+  }, [dispatch]);
+
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
 
   return (
     <div>
       <h3>Beneficiary Stories & Inventory</h3>
-      <ul>
+      <div className="grid gap-6">
         {stories.map(story => (
-          <li key={story.id}>{story.content}</li>
+          <div key={story.id} className="p-6 border rounded-lg shadow-sm">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-lg">{story.title}</h4>
+                <p className="text-gray-600">{story.content}</p>
+              </div>
+              {story.inventory && (
+                <div className="mt-4">
+                  <h5 className="font-medium">Related Inventory</h5>
+                  <ul className="list-disc list-inside text-gray-600">
+                    {story.inventory.map((item, index) => (
+                      <li key={index}>
+                        {item.name}: {item.quantity} units
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <div className="text-sm text-gray-500">
+                Posted: {new Date(story.datePosted).toLocaleDateString()}
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-// PlatformSettings component - Placeholder for system-wide configurations
-const PlatformSettings = () => (
-  <div>
-    <h3>Platform Settings</h3>
-    <p>Manage system-wide settings and user permissions here.</p>
-  </div>
-);
+const PlatformSettings = () => {
+  const [settings, setSettings] = useState({
+    emailNotifications: true,
+    automaticReports: true,
+    donationThreshold: 1000,
+  });
+
+  const handleSettingChange = (setting, value) => {
+    setSettings(prev => ({
+      ...prev,
+      [setting]: value
+    }));
+  };
+
+  return (
+    <div>
+      <h3>Platform Settings</h3>
+      <div className="space-y-6">
+        <div className="p-4 border rounded-lg">
+          <h4 className="font-semibold mb-4">Notification Settings</h4>
+          <div className="space-y-2">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={settings.emailNotifications}
+                onChange={(e) => handleSettingChange('emailNotifications', e.target.checked)}
+              />
+              <span>Email Notifications</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                checked={settings.automaticReports}
+                onChange={(e) => handleSettingChange('automaticReports', e.target.checked)}
+              />
+              <span>Automatic Reports</span>
+            </label>
+          </div>
+        </div>
+        
+        <div className="p-4 border rounded-lg">
+          <h4 className="font-semibold mb-4">Donation Settings</h4>
+          <div>
+            <label className="block">
+              <span>Donation Threshold Alert ($)</span>
+              <input
+                type="number"
+                value={settings.donationThreshold}
+                onChange={(e) => handleSettingChange('donationThreshold', parseInt(e.target.value))}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Administrator;

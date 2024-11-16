@@ -1,19 +1,25 @@
-
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchCharities,
+  submitDonation,
+  fetchDonationHistory,
+  setCurrentDonation,
+} from '../redux/slices/donorSlice';
 
 const Donor = () => {
   const [view, setView] = useState('charityList');
-  const [donationDetails, setDonationDetails] = useState(null);
+  const dispatch = useDispatch();
+  const donationDetails = useSelector((state) => state.donor.currentDonation);
 
   const renderView = () => {
     switch (view) {
       case 'charityList':
         return <CharityList setView={setView} />;
       case 'donationSetup':
-        return <DonationSetup setView={setView} setDonationDetails={setDonationDetails} />;
+        return <DonationSetup setView={setView} />;
       case 'donationConfirmation':
-        return <DonationConfirmation donationDetails={donationDetails} />;
+        return <DonationConfirmation />;
       case 'donationHistory':
         return <DonationHistory />;
       case 'accountSettings':
@@ -39,21 +45,18 @@ const Donor = () => {
   );
 };
 
-// CharityList component - Fetch charities from the backend
 const CharityList = ({ setView }) => {
-  const [charities, setCharities] = useState([]);
+  const dispatch = useDispatch();
+  const { charities, status, error } = useSelector((state) => state.donor);
 
   useEffect(() => {
-    const fetchCharities = async () => {
-      try {
-        const response = await axios.get('/api/charities'); // API endpoint to fetch charities
-        setCharities(response.data);
-      } catch (error) {
-        console.error('Error fetching charities:', error);
-      }
-    };
-    fetchCharities();
-  }, []);
+    if (status === 'idle') {
+      dispatch(fetchCharities());
+    }
+  }, [dispatch, status]);
+
+  if (status === 'loading') return <div>Loading...</div>;
+  if (status === 'failed') return <div>Error: {error}</div>;
 
   return (
     <div>
@@ -69,20 +72,19 @@ const CharityList = ({ setView }) => {
   );
 };
 
-// DonationSetup component - Submit donation details to the backend
-const DonationSetup = ({ setView, setDonationDetails }) => {
+const DonationSetup = ({ setView }) => {
+  const dispatch = useDispatch();
   const [amount, setAmount] = useState('');
   const [frequency, setFrequency] = useState('one-time');
 
   const handleDonation = async () => {
     const details = { amount, frequency };
-
     try {
-      await axios.post('/api/donations', details); // API endpoint to submit donation
-      setDonationDetails(details);
+      await dispatch(submitDonation(details)).unwrap();
+      dispatch(setCurrentDonation(details));
       setView('donationConfirmation');
     } catch (error) {
-      console.error('Error submitting donation:', error);
+      console.error('Failed to submit donation:', error);
     }
   };
 
@@ -113,31 +115,26 @@ const DonationSetup = ({ setView, setDonationDetails }) => {
   );
 };
 
-// DonationConfirmation component - Displays donation confirmation message
-const DonationConfirmation = ({ donationDetails }) => (
-  <div>
-    <h3>Donation Confirmation</h3>
-    <p>
-      Thank you for your donation of ${donationDetails?.amount} ({donationDetails?.frequency}).
-    </p>
-  </div>
-);
+const DonationConfirmation = () => {
+  const donationDetails = useSelector((state) => state.donor.currentDonation);
 
-// DonationHistory component - Fetch donation history from the backend
+  return (
+    <div>
+      <h3>Donation Confirmation</h3>
+      <p>
+        Thank you for your donation of ${donationDetails?.amount} ({donationDetails?.frequency}).
+      </p>
+    </div>
+  );
+};
+
 const DonationHistory = () => {
-  const [history, setHistory] = useState([]);
+  const dispatch = useDispatch();
+  const history = useSelector((state) => state.donor.donationHistory);
 
   useEffect(() => {
-    const fetchDonationHistory = async () => {
-      try {
-        const response = await axios.get('/api/donations/history'); // API endpoint for donation history
-        setHistory(response.data);
-      } catch (error) {
-        console.error('Error fetching donation history:', error);
-      }
-    };
-    fetchDonationHistory();
-  }, []);
+    dispatch(fetchDonationHistory());
+  }, [dispatch]);
 
   return (
     <div>
@@ -153,7 +150,6 @@ const DonationHistory = () => {
   );
 };
 
-// AccountSettings component - Manage account settings (placeholder)
 const AccountSettings = () => (
   <div>
     <h3>Account Settings</h3>
