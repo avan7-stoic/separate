@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addStory } from '../redux/charitySlice';
 
 const Stories = () => {
-  const stories = useSelector((state) => state.charity.stories); // access stories from the Redux state
-  const dispatch = useDispatch();
-
+  const [stories, setStories] = useState([]);
   const [newStory, setNewStory] = useState({ title: '', content: '' });
 
   const handleChange = (e) => {
-    setNewStory({ ...newStory, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewStory((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(addStory({ ...newStory, id: Date.now() })); // dispatch the addStory action
-    setNewStory({ title: '', content: '' }); // clear form after adding
+    setStories((prev) => [...prev, { ...newStory, id: Date.now() }]); // Add new story to the list
+    setNewStory({ title: '', content: '' }); // Reset form fields
   };
 
   return (

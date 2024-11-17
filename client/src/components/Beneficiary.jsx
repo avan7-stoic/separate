@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addBeneficiary } from 'redux/slices/charitySlice';
 
 const Beneficiaries = () => {
-  const beneficiaries = useSelector((state) => state.charity.beneficiaries);
-  const dispatch = useDispatch();
-
+  const [beneficiaries, setBeneficiaries] = useState([]);
   const [newBeneficiary, setNewBeneficiary] = useState({
     id: Date.now(),
     name: '',
@@ -15,13 +11,14 @@ const Beneficiaries = () => {
   });
 
   const handleChange = (e) => {
-    setNewBeneficiary({ ...newBeneficiary, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewBeneficiary((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(addBeneficiary(newBeneficiary));
-    setNewBeneficiary({ id: Date.now(), name: '', school: '', age: '', dateJoined: '' });
+    setBeneficiaries((prev) => [...prev, newBeneficiary]); // Add new beneficiary to the list
+    setNewBeneficiary({ id: Date.now(), name: '', school: '', age: '', dateJoined: '' }); // Reset form
   };
 
   return (
@@ -30,15 +27,40 @@ const Beneficiaries = () => {
       <ul>
         {beneficiaries.map((beneficiary) => (
           <li key={beneficiary.id}>
-            {beneficiary.name} - {beneficiary.school}
+            <strong>{beneficiary.name}</strong> - {beneficiary.school}
           </li>
         ))}
       </ul>
       <form onSubmit={handleAdd}>
-        <input name="name" placeholder="Name" onChange={handleChange} required />
-        <input name="school" placeholder="School" onChange={handleChange} required />
-        <input name="age" type="number" placeholder="Age" onChange={handleChange} required />
-        <input name="dateJoined" type="date" onChange={handleChange} required />
+        <input
+          name="name"
+          placeholder="Name"
+          value={newBeneficiary.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="school"
+          placeholder="School"
+          value={newBeneficiary.school}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="age"
+          type="number"
+          placeholder="Age"
+          value={newBeneficiary.age}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="dateJoined"
+          type="date"
+          value={newBeneficiary.dateJoined}
+          onChange={handleChange}
+          required
+        />
         <button type="submit">Add Beneficiary</button>
       </form>
     </div>

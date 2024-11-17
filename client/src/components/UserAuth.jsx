@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { loginUser, registerUser } from './store/authSlice'; // Redux actions
-import './App.css';
+import '../App.css';
 
 const UserAuth = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ username: '', email: '', password: '', confirm_password: '' });
-    const dispatch = useDispatch();
 
     const toggleForm = () => {
         setIsLogin(!isLogin);
@@ -22,16 +19,40 @@ const UserAuth = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    /**
+     * Handles form submission for login or signup.
+     * Makes a fetch request to the appropriate API endpoint.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isLogin) {
-            dispatch(loginUser({ username_or_email: formData.username, password: formData.password }));
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username_or_email: formData.username, password: formData.password }),
+                });
+                const result = await response.json();
+                console.log('Login successful:', result);
+            } catch (error) {
+                console.error('Login failed:', error);
+            }
         } else {
             if (formData.password !== formData.confirm_password) {
-                alert("Passwords do not match");
+                alert('Passwords do not match');
                 return;
             }
-            dispatch(registerUser(formData));
+            try {
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+                const result = await response.json();
+                console.log('Registration successful:', result);
+            } catch (error) {
+                console.error('Registration failed:', error);
+            }
         }
     };
 
@@ -44,14 +65,28 @@ const UserAuth = () => {
                         <h1>Login to Your Account</h1>
                         <div className="form-group">
                             <label htmlFor="username_or_email">Username or Email:</label>
-                            <input type="text" id="username_or_email" name="username_or_email" required onChange={handleInputChange} />
+                            <input
+                                type="text"
+                                id="username_or_email"
+                                name="username"
+                                required
+                                onChange={handleInputChange}
+                            />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password:</label>
-                            <input type="password" id="password" name="password" required onChange={handleInputChange} />
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                required
+                                onChange={handleInputChange}
+                            />
                         </div>
                         <button type="submit" className="btn">Login</button>
-                        <p>Don't have an account? <a href="#" onClick={toggleForm}>Sign Up</a></p>
+                        <p>
+                            Don't have an account? <a href="#" onClick={toggleForm}>Sign Up</a>
+                        </p>
                     </div>
                 </form>
             ) : (
@@ -71,7 +106,9 @@ const UserAuth = () => {
                     <input type="password" id="confirm_password" name="confirm_password" required onChange={handleInputChange} />
                     <br />
                     <input type="submit" value="Sign Up" />
-                    <p>Have an Account? <a href="#" onClick={toggleForm}>Log In</a></p>
+                    <p>
+                        Have an Account? <a href="#" onClick={toggleForm}>Log In</a>
+                    </p>
                 </form>
             )}
         </div>
