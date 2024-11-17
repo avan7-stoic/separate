@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addStory } from '../redux/charitySlice';
+import { addStory } from '../redux/slices/charitySlice.js';
 
 const Stories = () => {
-  const stories = useSelector((state) => state.charity.stories); // access stories from the Redux state
+  const stories = useSelector((state) => state.charity.stories); 
   const dispatch = useDispatch();
 
   const [newStory, setNewStory] = useState({ title: '', content: '' });
@@ -14,8 +14,8 @@ const Stories = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    dispatch(addStory({ ...newStory, id: Date.now() })); // dispatch the addStory action
-    setNewStory({ title: '', content: '' }); // clear form after adding
+    dispatch(addStory({ ...newStory, id: Date.now() })); 
+    setNewStory({ title: '', content: '' }); 
   };
 
   return (

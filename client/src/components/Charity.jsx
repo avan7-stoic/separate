@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { signUp, logOut } from "./redux/slices/charitySlice";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUp, logOut } from '../redux/slices/charitySlice.js';
 
 const Charity = () => {
   const dispatch = useDispatch();

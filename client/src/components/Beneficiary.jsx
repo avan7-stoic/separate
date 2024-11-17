@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBeneficiary } from 'redux/slices/charitySlice';
+import { addBeneficiary } from '../redux/slices/charitySlice.js'; 
 
 const Beneficiaries = () => {
   const beneficiaries = useSelector((state) => state.charity.beneficiaries);

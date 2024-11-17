@@ -28,8 +28,11 @@ const charitySlice = createSlice({
     addStory(state, action) {
       state.stories.push(action.payload);
     },
+    fetchBeneficiaryStories(state, action) {
+      state.stories = action.payload;
+    },
   },
 });
 
-export const { signUp, logOut, addBeneficiary, addStory } = charitySlice.actions;
+export const { signUp, logOut, addBeneficiary, addStory, fetchBeneficiaryStories } = charitySlice.actions;
 export default charitySlice.reducer;
