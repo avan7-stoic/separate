@@ -1,4 +1,3 @@
-// Donor.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -24,13 +23,33 @@ const Donor = () => {
   };
 
   return (
-    <div className="donor">
-      <h2>Donor Dashboard</h2>
-      <nav>
-        <button onClick={() => setView('charityList')}>Charity List</button>
-        <button onClick={() => setView('donationSetup')}>Donation Setup</button>
-        <button onClick={() => setView('donationHistory')}>Donation History</button>
-        <button onClick={() => setView('accountSettings')}>Account Settings</button>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h2 className="text-3xl font-semibold text-center text-purple-600 mb-6">Donor Dashboard</h2>
+      <nav className="flex justify-center space-x-6 mb-6">
+        <button
+          onClick={() => setView('charityList')}
+          className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition duration-300"
+        >
+          Charity List
+        </button>
+        <button
+          onClick={() => setView('donationSetup')}
+          className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition duration-300"
+        >
+          Donation Setup
+        </button>
+        <button
+          onClick={() => setView('donationHistory')}
+          className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition duration-300"
+        >
+          Donation History
+        </button>
+        <button
+          onClick={() => setView('accountSettings')}
+          className="px-4 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition duration-300"
+        >
+          Account Settings
+        </button>
       </nav>
       <div className="view-content">
         {renderView()}
@@ -57,10 +76,14 @@ const CharityList = ({ setView }) => {
 
   return (
     <div>
-      <h3>Charity List</h3>
-      <ul>
+      <h3 className="text-2xl font-semibold text-center text-purple-600 mb-4">Charity List</h3>
+      <ul className="space-y-4">
         {charities.map((charity) => (
-          <li key={charity.id} onClick={() => setView('donationSetup')}>
+          <li
+            key={charity.id}
+            onClick={() => setView('donationSetup')}
+            className="cursor-pointer hover:bg-purple-100 px-4 py-2 rounded-lg shadow-md transition duration-300"
+          >
             {charity.name}
           </li>
         ))}
@@ -88,36 +111,48 @@ const DonationSetup = ({ setView, setDonationDetails }) => {
 
   return (
     <div>
-      <h3>Donation Setup</h3>
-      <label>
-        Amount:
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder="Enter amount"
-        />
-      </label>
-      <br />
-      <label>
-        Frequency:
-        <select value={frequency} onChange={(e) => setFrequency(e.target.value)}>
-          <option value="one-time">One-Time</option>
-          <option value="monthly">Monthly</option>
-          <option value="annually">Annually</option>
-        </select>
-      </label>
-      <br />
-      <button onClick={handleDonation}>Confirm Donation</button>
+      <h3 className="text-2xl font-semibold text-center text-purple-600 mb-4">Donation Setup</h3>
+      <div className="space-y-4">
+        <div>
+          <label className="block text-lg text-purple-600">Amount:</label>
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter amount"
+            className="w-full p-2 border-2 border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+          />
+        </div>
+        <div>
+          <label className="block text-lg text-purple-600">Frequency:</label>
+          <select
+            value={frequency}
+            onChange={(e) => setFrequency(e.target.value)}
+            className="w-full p-2 border-2 border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+          >
+            <option value="one-time">One-Time</option>
+            <option value="monthly">Monthly</option>
+            <option value="annually">Annually</option>
+          </select>
+        </div>
+        <div className="text-center">
+          <button
+            onClick={handleDonation}
+            className="px-6 py-2 text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition duration-300"
+          >
+            Confirm Donation
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 // DonationConfirmation component - Displays donation confirmation message
 const DonationConfirmation = ({ donationDetails }) => (
-  <div>
-    <h3>Donation Confirmation</h3>
-    <p>
+  <div className="text-center">
+    <h3 className="text-2xl font-semibold text-purple-600 mb-4">Donation Confirmation</h3>
+    <p className="text-lg text-purple-600">
       Thank you for your donation of ${donationDetails?.amount} ({donationDetails?.frequency}).
     </p>
   </div>
@@ -141,10 +176,10 @@ const DonationHistory = () => {
 
   return (
     <div>
-      <h3>Donation History</h3>
-      <ul>
+      <h3 className="text-2xl font-semibold text-center text-purple-600 mb-4">Donation History</h3>
+      <ul className="space-y-4">
         {history.map((donation) => (
-          <li key={donation.id}>
+          <li key={donation.id} className="px-4 py-2 rounded-lg shadow-md bg-purple-50">
             ${donation.amount} - {donation.frequency} - {new Date(donation.date).toLocaleDateString()}
           </li>
         ))}
@@ -156,8 +191,8 @@ const DonationHistory = () => {
 // AccountSettings component - Manage account settings (placeholder)
 const AccountSettings = () => (
   <div>
-    <h3>Account Settings</h3>
-    <p>Manage your account settings and preferences here.</p>
+    <h3 className="text-2xl font-semibold text-center text-purple-600 mb-4">Account Settings</h3>
+    <p className="text-center text-lg text-purple-600">Manage your account settings and preferences here.</p>
   </div>
 );
 

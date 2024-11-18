@@ -31,7 +31,7 @@ function App() {
           <Route path="/stories" element={<Stories />} />
           <Route path="/donor" element={<Donor />} />
           <Route path="/charities" element={<Charities />} />
-          <Route path="/administrator" element={<Administrator />} />
+          <Route path="/admin" element={<Administrator />} />
           <Route path="/beneficiaries" element={<Beneficiaries />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="*" element={<NoPage />} />
