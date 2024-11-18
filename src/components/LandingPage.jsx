@@ -1,49 +1,54 @@
 import React from "react";
 import "/src/output.css";
 import "/src/index.css";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import Navbar from "./NavBar";
 
 const LandingPage = () => {
 
   const links = [
-    { name: "Home", path: "/" },
-    { name: "Charities", path: "/charities" },
-    { name: "Our Impact", path: "/our-impact" },
-    { name: "About Us", path: "/about" },
-    { name: "Contact Us", path: "/contact" },
+    { name: "Donate Now", path: "/auth" },
+    // { name: "Learn more", path: "/about" },
   ];
+
+  const slides = [
+    {
+      image: "src/assets/slide1.jpg",
+      title: "Empower Girls Through Education",
+      description:
+        "Join our mission to provide education and menstrual hygiene support to young girls in need.",
+    },
+    {
+      image: "src/assets/slide2.jpg",
+      title: "Ending Period Poverty",
+      description:
+        "Together, we can ensure every girl has access to essential hygiene products.",
+    },
+    {
+      image: "src/assets/slide3.jpg",
+      title: "Building a Brighter Future",
+      description:
+        "Support programs that empower girls to reach their full potential.",
+    },
+  ];
+
+  // const toggleDropdown = (type) => {
+  //   if (type === "register") {
+  //     setRegisterDropdownOpen(!registerDropdownOpen);
+  //     setSignInDropdownOpen(false); // Close sign-in dropdown if open
+  //   } else {
+  //     setSignInDropdownOpen(!signInDropdownOpen);
+  //     setRegisterDropdownOpen(false); // Close register dropdown if open
+  //   }
+  // };
 
   return (
     <div className="text-[#333] flex justify-center items-center min-h-screen text-center overflow-x-hidden">
       {/* Landing Page*/}
       <div className="landing-page w-full max-w-7xl mx-auto flex flex-col items-center bg-cover bg-fixed rounded-lg shadow-lg p-5">
         {/* /* Navigation */}
-        <nav className="landing-nav fixed top-0 left-0 right-0 w-full bg-gradient-to-r from-[#2b2829] to-[#3c393a] text-white p-4 flex justify-between items-center shadow-md z-50">
-          <img src="src/assets/logo.jpg" alt="Tuinue Wasichana logo" id="tuinue-logo" className="w-12 h-12" />
-          <div className="logo text-2xl font-bold tracking-wide text-[#ec6083]">
-            Tuinue Wasichana
-          </div>
-          <ul className="nav-links hidden md:flex space-x-6">
-            {links.map(({ name, path }) => (
-              <li key={name}>
-                <Link
-                  to={path}
-                  className="hover:text-[#d08cc4] transition duration-300 transform hover:scale-110"
-                >
-                  {name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="auth-buttons flex items-center space-x-4">
-            <button className="bg-[#6a5b62] text-white py-2 px-4 rounded-lg hover:bg-[#955786] transition duration-300">
-              Sign In
-            </button>
-            <button className="bg-gradient-to-r from-[#ec6083] to-[#d85b8c] text-white py-2 px-4 rounded-lg transform hover:scale-110 transition duration-300">
-              <a href="#">Register</a>
-            </button>
-          </div>
-        </nav>
+
+        <Navbar />
 
         {/* Hero Section */}
         <section className="hero-section w-full h-[calc(100vh-60px)] flex justify-center items-center background: radial-gradient(circle at 7.5% 24%, rgb(237, 161, 193) 0%, rgb(250, 178, 172) 25.5%, rgb(190, 228, 210) 62.3%, rgb(215, 248, 247) 93.8%); bg-cover bg-center">
@@ -55,22 +60,21 @@ const LandingPage = () => {
               Your donation provides menstrual hygiene products and sanitation facilities to school-going girls in Sub-Saharan countries.
             </p>
             <div className="hero-buttons flex justify-center space-x-4">
-              {["Donate now", "Learn More"].map((btn) => (
+              {links.map((btn) => (
                 <a
-                  key={btn}
-                  href="#"
-                  className={`bg-gradient-to-r from-[#ec6083] to-[#946789] text-white py-2 px-6 rounded-full text-lg transition duration-300 transform hover:scale-110 ${btn === "Learn More" ? "hover:bg-gradient-to-r hover:from-[#6a5b62] hover:to-[#d85b8c]" : ""
-                    }`}
+                  key={btn.name}
+                  href={btn.path}
+                  className={`py-6 px-20 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition duration-200`}
                 >
-                  {btn}
+                  {btn.name}
                 </a>
               ))}
             </div>
           </div>
-          {/* Image side by side // could also be a carousel */}
-          <div className="hero-image hidden md:block md:w-1/2 pl-8">
+          {/* Image on the right side*/}
+          {/* <div className="hero-image hidden md:block md:w-1/2 pl-8">
             <img src="src/assets/phase5 pic.jpg" alt="Welcome Image" id="landing-page-image" />
-          </div>
+          </div> */}
         </section>
 
 
@@ -109,7 +113,7 @@ const LandingPage = () => {
           </div>
         </section>
 
-        <section>
+        <section id="our-mission-and-impact">
           <div className="bg-pink-50 py-12 px-6">
             {/* Our Mission Section */}
             <div className="text-center mb-16">
@@ -201,10 +205,10 @@ const LandingPage = () => {
             </p>
             <div className="mt-6 flex flex-col md:flex-row md:items-center gap-4">
               <button className="bg-purple-600 text-white py-2 px-6 rounded-full shadow-lg hover:bg-purple-700">
-                Donate Now
+                <a href="donateforher">Donate Now</a>
               </button>
               <div className="text-center">
-                <span className="text-4xl font-bold text-purple-800">$ 6,000,000</span>
+                <span className="text-4xl font-bold text-purple-800">Ksh. 6,000,000</span>
                 <p className="text-gray-600">Donated</p>
               </div>
             </div>

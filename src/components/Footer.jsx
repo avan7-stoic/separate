@@ -1,5 +1,13 @@
 import React from 'react'
 
+const links = [
+  { name: "Home", path: "/" },
+  { name: "Charities", path: "/charities" },
+  // { name: "Our Impact", path: "#our-mission-and-impact" },
+  { name: "About Us", path: "/about" },
+  { name: "Contact Us", path: "/contact" },
+];
+
 function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -8,24 +16,40 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
 
           {/* About Us */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">About Us</h3>
             <p className="text-sm leading-relaxed">
               We are committed to eliminating period poverty and providing menstrual health education. Our mission is to empower young girls by ensuring they have access to sanitary products and knowledge about hygiene.
             </p>
-          </div>
+          </div> */}
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">Quick Links</h3>
+            <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">Find us on:</h3>
             <ul className="space-y-2">
-              {["Home", "About Us", "Our Mission", "Contact Us"].map((link) => (
+              {["Facebook", "Twitter(X)", "Instagram", "LinkedIn"].map((link) => (
                 <li key={link}>
                   <a
                     href="#"
                     className="hover:text-pink-300 transition-colors duration-300"
                   >
                     {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">Quick Links</h3>
+            <ul className="space-y-2">
+              {links.map((link) => (
+                <li key={link.path}>
+                  <a
+                    href={link.path}
+                    className="hover:text-pink-300 transition-colors duration-300"
+                  >
+                    {link.name}
                   </a>
                 </li>
               ))}
@@ -99,7 +123,7 @@ function Footer() {
 
         {/* Copyright */}
         <div className="text-center text-sm mt-8 text-gray-500">
-          &copy; 2024 PadUpAGirl. All rights reserved.
+          &copy; 2024 Tuinue Wasichana. All rights reserved.
         </div>
       </div>
     </footer>
@@ -107,5 +131,6 @@ function Footer() {
 }
 
 export default Footer
+
 
 

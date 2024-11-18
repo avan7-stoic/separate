@@ -8,6 +8,7 @@ import Stories from './components/Stories';
 import Donor from './components/Donor';
 import Charities from './components/Charity';
 import Administrator from './components/Admin';
+import AdminDashboard from './components/AdminDashboard';
 import Beneficiaries from './components/Beneficiary';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
@@ -31,7 +32,8 @@ function App() {
           <Route path="/stories" element={<Stories />} />
           <Route path="/donor" element={<Donor />} />
           <Route path="/charities" element={<Charities />} />
-          <Route path="/admin" element={<Administrator />} />
+          <Route path="/dashboard" element={<Administrator />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/beneficiaries" element={<Beneficiaries />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="*" element={<NoPage />} />

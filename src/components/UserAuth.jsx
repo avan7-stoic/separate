@@ -72,6 +72,7 @@ const UserAuth = () => {
                 <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">
                     {isLogin ? 'Login to Your Account' : 'Create Your Account'}
                 </h1>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {isLogin ? (
                         <>
@@ -178,6 +179,7 @@ const UserAuth = () => {
                         {isLogin ? 'Login' : 'Sign Up'}
                     </button>
                 </form>
+
                 <p className="text-sm text-gray-500 mt-4 text-center">
                     {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
                     <button
@@ -186,6 +188,7 @@ const UserAuth = () => {
                     >
                         {isLogin ? 'Sign Up' : 'Log In'}
                     </button>
+
                 </p>
             </div>
         </div>

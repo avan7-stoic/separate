@@ -11,15 +11,15 @@
 }
 
 .hero-section {
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle at 7.5% 24%,
     rgb(237, 161, 193) 0%,
     rgb(250, 178, 172) 25.5%,
     rgb(190, 228, 210) 62.3%,
     rgb(215, 248, 247) 93.8%
-  );
+  ); */
   border-radius: 20px;
-  width: 2000px;
+  /* width: 2000px; */
 }
 
 .landing-nav .logo {
@@ -43,7 +43,7 @@
 .hero-section {
   margin-top: 50px;
   width: 100vw;
-  height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px); */
   background-position: center;
   display: flex;
   justify-content: center;
@@ -51,15 +51,16 @@
 }
 
 .hero-content {
-  max-width: 630px;
+  max-width: 1330px;
   text-align: center;
   color: #333;
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   padding: 40px;
-  background: rgba(255, 255, 255, 0.559);
+  /* background: rgba(255, 255, 255, 0.559); */
   border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.37);
+  /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.37); */
   animation: fadeIn 1.2s ease-in-out;
+  margin-top: -320px;
 }
 
 .hero-content h1 {

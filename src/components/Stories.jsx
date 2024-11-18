@@ -17,7 +17,7 @@ const Stories = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-pink-50 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">Stories</h2>
+      <h2 className="text-3xl font-bold text-center text-purple-700 mb-6">Beneficiary Stories</h2>
       <ul className="space-y-4">
         {stories.map((story) => (
           <li key={story.id} className="p-4 bg-purple-100 rounded-lg shadow-sm hover:bg-purple-200 transition-all">

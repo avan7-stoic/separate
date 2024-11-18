@@ -8,7 +8,7 @@ function NoPage() {
                     <h1 className="text-6xl font-bold text-pink-600 mb-4">Error: 404</h1>
                     <h2 className="text-2xl font-semibold text-purple-800 mb-2">Oops! That page couldn’t be found.</h2>
                     <h3 className="text-lg text-purple-600 mb-4">
-                        It looks like nothing was found at this location. Maybe try one of the links below or a search?
+                        It looks like nothing was found at this location.
                     </h3>
                     <button
                         type="button"

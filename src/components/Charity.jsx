@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./NavBar";
 
 const Charity = () => {
   const [profile, setProfile] = useState({
@@ -30,68 +31,17 @@ const Charity = () => {
   };
 
   return (
-    <div
-      className="text-center p-8 bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/path-to-your-image.jpg')" }}
-    >
-      <div className="bg-black bg-opacity-50 p-8 rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold text-white mb-6">Charity Portal</h2>
-
-        {!loggedIn ? (
-          <form
-            onSubmit={handleSignUp}
-            className="mb-8 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg max-w-md mx-auto"
-          >
-            <div>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Charity Name"
-                required
-                className="p-3 mb-3 w-full rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
-              />
-            </div>
-            <div>
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                placeholder="Charity Description"
-                required
-                className="p-3 mb-3 w-full h-32 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-purple-700 text-white py-3 px-6 rounded-md hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
-            >
-              Sign Up
-            </button>
-          </form>
-        ) : (
-          <div className="bg-white bg-opacity-80 p-6 rounded-lg shadow-lg max-w-md mx-auto">
-            <h3 className="text-3xl font-semibold text-gray-700 mb-4">Charity Profile</h3>
-            <p className="text-xl mb-2">
-              <strong>Name:</strong> {profile.name || "N/A"}
-            </p>
-            <p className="text-xl mb-2">
-              <strong>Description:</strong> {profile.description || "N/A"}
-            </p>
-            <p className="text-xl mb-4">
-              <strong>Status:</strong> {loggedIn ? "Logged In" : "Logged Out"}
-            </p>
-            <button
-              onClick={handleLogout}
-              className="bg-red-600 text-white py-3 px-6 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
-            >
-              Logout
-            </button>
-          </div>
-        )}
+    <>
+      <Navbar />
+      <br />
+      <br />
+      <div className="bg-gray-100 text-gray-900 py-12 px-6 md:px-16 lg:px-24">
+        <h1 className="text-4xl font-extrabold text-center text-pink-600 mb-8">
+          Charities
+        </h1>
       </div>
-    </div>
+
+    </>
   );
 };
 
