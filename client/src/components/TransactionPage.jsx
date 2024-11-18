@@ -16,7 +16,7 @@ const DonateForHer = () => {
     return (
         <div className="container">
             <div className="left-panel">
-                <img src="https://via.placeholder.com/300x200" alt="Girl" />
+                <img src="" alt="" />
                 <h3>Transform a girl's life for as little as $10 a month</h3>
                 <p>lorem ipsum ......................</p>
                 <div className="payment-method">
