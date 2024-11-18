@@ -1,4 +1,4 @@
-# [Inua Wasichana](https://inuka.onrender.com//)
+# [Tuinue Wasichana](https://inuka.onrender.com//)
 
 This repository focuses on addressing the issue of menstrual hygiene management for school-going girls in Sub-Saharan Africa. The goal is to create a platform that facilitates regular donations to charities dedicated to providing sanitary supplies.
 
