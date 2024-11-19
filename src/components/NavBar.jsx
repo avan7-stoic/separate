@@ -74,7 +74,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/charities"
+                                        to="/charity-dashboard"
                                         className="block px-4 py-2 hover:bg-gray-100"
                                     >
                                         Charity Sign In

@@ -6,13 +6,14 @@ import AuthPage from './components/UserAuth';
 import DonateForHer from './components/TransactionPage';
 import Stories from './components/Stories';
 import Donor from './components/Donor';
-import Charities from './components/Charity';
+import Charities from './components/Charities';
 import Administrator from './components/Admin';
 import AdminDashboard from './components/AdminDashboard';
 import Beneficiaries from './components/Beneficiary';
 import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import NoPage from './components/NoPage';
+import CharityDashboard from './components/CharityDashboard';
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/stories" element={<Stories />} />
           <Route path="/donor" element={<Donor />} />
           <Route path="/charities" element={<Charities />} />
+          <Route path="/charity-dashboard" element={<CharityDashboard />} />
           <Route path="/dashboard" element={<Administrator />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/beneficiaries" element={<Beneficiaries />} />

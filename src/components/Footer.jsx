@@ -15,14 +15,6 @@ function Footer() {
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
 
-          {/* About Us */}
-          {/* <div>
-            <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">About Us</h3>
-            <p className="text-sm leading-relaxed">
-              We are committed to eliminating period poverty and providing menstrual health education. Our mission is to empower young girls by ensuring they have access to sanitary products and knowledge about hygiene.
-            </p>
-          </div> */}
-
           <div>
             <h3 className="text-lg font-semibold uppercase mb-4 text-pink-400">Find us on:</h3>
             <ul className="space-y-2">
@@ -86,7 +78,9 @@ function Footer() {
             {[
               { name: "Facebook", icon: "fab fa-facebook-f", url: "#" },
               { name: "Twitter", icon: "fab fa-twitter", url: "#" },
-              { name: "Instagram", icon: "fab fa-instagram", url: "#" },
+              {
+                name: "Instagram", icon: "fab fa-instagram", url: ""
+              },
               { name: "LinkedIn", icon: "fab fa-linkedin-in", url: "#" },
             ].map((social) => (
               <a
