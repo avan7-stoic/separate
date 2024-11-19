@@ -20,6 +20,7 @@
   ); */
   border-radius: 20px;
   /* width: 2000px; */
+  height: 100%;
 }
 
 .landing-nav .logo {
@@ -51,7 +52,7 @@
 }
 
 .hero-content {
-  max-width: 1330px;
+  /* max-width: 1330px; */
   text-align: center;
   color: #333;
   /* backdrop-filter: blur(10px); */
@@ -60,7 +61,7 @@
   border-radius: 10px;
   /* box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.37); */
   animation: fadeIn 1.2s ease-in-out;
-  margin-top: -320px;
+  margin-top: 8%;
 }
 
 .hero-content h1 {
@@ -79,6 +80,10 @@
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+}
+
+#learn-more{
+  background-color:black;
 }
 
 /* Impact Section */

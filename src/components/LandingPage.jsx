@@ -3,33 +3,13 @@ import "/src/output.css";
 import "/src/index.css";
 // import { Link } from 'react-router-dom';
 import Navbar from "./NavBar";
+import UniqueSlideshow from "./SlideShow";
 
 const LandingPage = () => {
 
   const links = [
     { name: "Donate Now", path: "/auth" },
-    // { name: "Learn more", path: "/about" },
-  ];
-
-  const slides = [
-    {
-      image: "src/assets/slide1.jpg",
-      title: "Empower Girls Through Education",
-      description:
-        "Join our mission to provide education and menstrual hygiene support to young girls in need.",
-    },
-    {
-      image: "src/assets/slide2.jpg",
-      title: "Ending Period Poverty",
-      description:
-        "Together, we can ensure every girl has access to essential hygiene products.",
-    },
-    {
-      image: "src/assets/slide3.jpg",
-      title: "Building a Brighter Future",
-      description:
-        "Support programs that empower girls to reach their full potential.",
-    },
+    { name: "Learn more", path: "/about", id: 'learn-more' },
   ];
 
   // const toggleDropdown = (type) => {
@@ -49,10 +29,10 @@ const LandingPage = () => {
         {/* /* Navigation */}
 
         <Navbar />
-
+        {/* -------------------------------------------------------------------------------------------------------------------------------------------- */}
         {/* Hero Section */}
-        <section className="hero-section w-full h-[calc(100vh-60px)] flex justify-center items-center background: radial-gradient(circle at 7.5% 24%, rgb(237, 161, 193) 0%, rgb(250, 178, 172) 25.5%, rgb(190, 228, 210) 62.3%, rgb(215, 248, 247) 93.8%); bg-cover bg-center">
-          <div className="hero-content max-w-lg text-center text-[#333] backdrop-blur-lg p-6 bg-white/80 rounded-lg shadow-xl animate-fade-in">
+        <section className="hero-section w-full h-[calc(100vh-60px)] flex justify-center items-center bg-cover bg-center">
+          <div className="hero-content text-center text-[#333]  animate-fade-in">
             <h1 className="text-2xl md:text-6xl font-bold mb-4 text-[#ec6083]">
               Empower Girls Through Menstrual Hygiene Support
             </h1>
@@ -64,24 +44,26 @@ const LandingPage = () => {
                 <a
                   key={btn.name}
                   href={btn.path}
-                  className={`py-6 px-20 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition duration-200`}
+                  className={`inline-block py-5 px-20 bg-pink-600 text-white font-semibold rounded-lg border-radius-2xl hover:bg-pink-700 transition duration-200`}
                 >
                   {btn.name}
                 </a>
               ))}
             </div>
           </div>
-          {/* Image on the right side*/}
-          {/* <div className="hero-image hidden md:block md:w-1/2 pl-8">
-            <img src="src/assets/phase5 pic.jpg" alt="Welcome Image" id="landing-page-image" />
-          </div> */}
         </section>
+        {/* ------------------------------------------------------------------------------------------------------------------------------------------- */}
+        {/* <div className="hero-image hidden md:block md:w-1/2 pl-8">
+          <img src="src/assets/phase5 pic.jpg" alt="Welcome Image" id="landing-page-image" />
+        </div> */}
 
-
-
+        <div className="slideshow w-full max-w-7xl mx-auto flex flex-col items-center bg-cover bg-fixed rounded-lg shadow-lg p-5">
+          <UniqueSlideshow />
+        </div>
+        {/* ------------------------------------------------------------------------------------------------------------------------------------------ */}
         <section className="impact-section bg-white py-16 px-8 rounded-lg shadow-lg mt-12">
           <div className="bg-purple-50 py-8 px-4 text-center">
-            <h2 className="text-3xl font-bold text-purple-800">About Tuinue Wasichana</h2>
+            <h2 className="text-4xl font-bold text-purple-800">About Tuinue Wasichana</h2>
             <p className="max-w-xl mx-auto mt-4 text-gray-700 leading-relaxed">
               At <strong>Tuinue Wasichana</strong>, we are on a mission to make a
               difference, one girl at a time. Our commitment is simple yet powerful:
@@ -112,7 +94,7 @@ const LandingPage = () => {
             </div>
           </div>
         </section>
-
+        {/* ------------------------------------------------------------------------------------------------------------------------------------------------ */}
         <section id="our-mission-and-impact">
           <div className="bg-pink-50 py-12 px-6">
             {/* Our Mission Section */}
@@ -205,10 +187,10 @@ const LandingPage = () => {
             </p>
             <div className="mt-6 flex flex-col md:flex-row md:items-center gap-4">
               <button className="bg-purple-600 text-white py-2 px-6 rounded-full shadow-lg hover:bg-purple-700">
-                <a href="donateforher">Donate Now</a>
+                <a href="donate">Donate Now</a>
               </button>
               <div className="text-center">
-                <span className="text-4xl font-bold text-purple-800">Ksh. 6,000,000</span>
+                <span className="text-4xl font-bold text-purple-800">Ksh. 600,000</span>
                 <p className="text-gray-600">Donated</p>
               </div>
             </div>
@@ -222,7 +204,6 @@ const LandingPage = () => {
                 alt="Kenya map showing girls"
                 className="rounded-lg shadow-lg"
               />
-              {/* <div className="absolute inset-0 bg-gradient-to-r from-purple-200 via-transparent to-white rounded-lg"></div> */}
             </div>
           </div>
         </div>

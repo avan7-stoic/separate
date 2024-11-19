@@ -26,6 +26,7 @@ function App() {
         <Routes>
           <Route index element={<LandingPage />} />
           <Route path="/" element={<LandingPage />} />
+          <Route path="home" element={<LandingPage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/donate" element={<DonateForHer />} />

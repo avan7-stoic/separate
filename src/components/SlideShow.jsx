@@ -3,19 +3,19 @@ import React, { useState, useEffect } from "react";
 const UniqueSlideshow = () => {
     const slides = [
         {
-            image: "src/assets/slide1.jpg",
+            image: "src/assets/school.jpg",
             title: "Empower Girls Through Education",
             description:
                 "Join our mission to provide education and menstrual hygiene support to young girls in need.",
         },
         {
-            image: "src/assets/slide2.jpg",
+            image: "src/assets/keeping-girls-in-school.jpg",
             title: "Ending Period Poverty",
             description:
                 "Together, we can ensure every girl has access to essential hygiene products.",
         },
         {
-            image: "src/assets/slide3.jpg",
+            image: "src/assets/group-of-happy-african-children-orphanage-in-nairobi-kenya-east-africa.jpg",
             title: "Building a Brighter Future",
             description:
                 "Support programs that empower girls to reach their full potential.",
@@ -24,7 +24,8 @@ const UniqueSlideshow = () => {
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Automatically change slides every 5 seconds
+    // Automatically change slides after a 5 second delay:
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -43,10 +44,10 @@ const UniqueSlideshow = () => {
                 >
                     <img
                         src={slide.image}
-                        alt={`slide-${index}`}
+                        alt={`image slide-${index}`}
                         className="unique-slide-image w-full h-full object-cover"
                     />
-                    <div className="unique-slide-overlay absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-black text-center px-4">
+                    <div className="unique-slide-overlay absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white text-center px-4">
                         <h2 className="unique-slide-title text-3xl md:text-5xl font-bold">
                             {slide.title}
                         </h2>

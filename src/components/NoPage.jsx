@@ -22,7 +22,7 @@ function NoPage() {
                     <img
                         src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
                         alt="Not Found"
-                        className="w-80 h-80 md:w-96 md:h-96"
+                        className="w-180 h-120 md:w-196 md:h-96"
                     />
                 </div>
             </div>
